@@ -19,7 +19,9 @@ class Expense extends Model
         'name',
         'amount',
         'date',
-        'is_recurrent'
+        'is_recurrent',
+        'category_id',
+        'user_id',
     ];
 
     /**

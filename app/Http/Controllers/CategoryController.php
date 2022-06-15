@@ -4,12 +4,16 @@ namespace App\Http\Controllers;
 
 use App\Models\Category;
 use App\Models\User;
+use Illuminate\Auth\Events\Authenticated;
 use Illuminate\Contracts\Foundation\Application;
 use Illuminate\Contracts\View\Factory;
 use Illuminate\Contracts\View\View;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Validator;
+use Illuminate\Validation\ValidationException;
 
 class CategoryController extends Controller
 {
@@ -18,59 +22,50 @@ class CategoryController extends Controller
      *
      * @param Request $request
      * @return RedirectResponse
+     * @throws ValidationException
      */
     public function store(Request $request): RedirectResponse
     {
+        Validator::make($request->all(), [
+            'name' => 'required|string|min:2|max:25',
+        ])->validate();
+
         $category = new Category();
         $category->name = $request->name;
         $category->is_income = $request->is_income ? 1 : 0;
+        $category->user_id = Auth::id();
 
         $category->save();
-        return redirect()->back()->with('success', 'category created with success');
+        return redirect()->back()->with('success','category created with success');
     }
 
     /**
-     * Display the specified resource.
-     *
-     * @param  \App\Models\Category  $category
-     * @return Response
-     */
-    public function show(Category $category)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Models\Category  $category
-     * @return Response
-     */
-    public function edit(Category $category)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     *
      * @param Request $request
-     * @param  \App\Models\Category  $category
-     * @return Response
+     * @param Category $category
+     * @return RedirectResponse
+     * @throws ValidationException
      */
-    public function update(Request $request, Category $category)
+    public function update(Request $request, Category $category): RedirectResponse
     {
-        //
+        Validator::make($request->all(), [
+            'name' => 'required|string|min:2|max:25',
+        ])->validate();
+
+        $category = Category::find($category);
+        $category->name = $request->name;
+        $category->is_income = $request->is_income ? 1 : 0;
+        $category->save();
+        return redirect()->back()->with('success','category updated with success');
     }
 
     /**
-     * Remove the specified resource from storage.
-     *
-     * @param  \App\Models\Category  $category
-     * @return Response
+     * @param Category $category
+     * @return RedirectResponse
      */
-    public function destroy(Category $category)
+    public function destroy(Category $category): RedirectResponse
     {
-        //
+        $category = Category::find($category);
+        $category->destroy();
+        return redirect()->back()->with('success', 'category deleted with success');
     }
 }

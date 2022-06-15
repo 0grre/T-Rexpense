@@ -17,7 +17,14 @@
                             @endforeach
                         </ul>
                     </div>
-                    <x-expense.form/>
+                    <x-expense.form :categories="$categories"/>
+                    <div>
+                        <ul>
+                            @foreach($expenses as $expense)
+                                <li>{{ $expense->name }}</li>
+                            @endforeach
+                        </ul>
+                    </div>
                 </div>
             </div>
         </div>
