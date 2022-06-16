@@ -13,14 +13,8 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('expenses', function (Blueprint $table) {
+        Schema::create('recurrents', function (Blueprint $table) {
             $table->id();
-            $table->string('name');
-            $table->decimal('amount');
-            $table->date('date');
-            $table->foreignId('recurrent_id')->nullable()->constrained('recurrent');
-            $table->foreignId('category_id')->constrained('categories');
-            $table->foreignId('user_id')->constrained('users');
             $table->timestamps();
         });
     }
@@ -32,6 +26,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('expenses');
+        Schema::dropIfExists('recurrents');
     }
 };

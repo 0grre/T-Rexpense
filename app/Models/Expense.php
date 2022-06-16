@@ -19,10 +19,18 @@ class Expense extends Model
         'name',
         'amount',
         'date',
-        'is_recurrent',
+        'recurrent_id',
         'category_id',
         'user_id',
     ];
+
+    /**
+     * @return BelongsTo
+     */
+    public function recurrent(): BelongsTo
+    {
+        return $this->belongsTo(Recurrent::class);
+    }
 
     /**
      * @return BelongsTo

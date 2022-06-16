@@ -26,46 +26,45 @@ class CategoryController extends Controller
      */
     public function store(Request $request): RedirectResponse
     {
-        Validator::make($request->all(), [
-            'name' => 'required|string|min:2|max:25',
-        ])->validate();
-
-        $category = new Category();
-        $category->name = $request->name;
-        $category->is_income = $request->is_income ? 1 : 0;
-        $category->user_id = Auth::id();
-
-        $category->save();
-        return redirect()->back()->with('success','category created with success');
+        self::CategoryValidator($request);
+        return redirect()->back()->with('success', 'category created with success');
     }
 
     /**
      * @param Request $request
-     * @param Category $category
+     * @param $id
      * @return RedirectResponse
      * @throws ValidationException
      */
-    public function update(Request $request, Category $category): RedirectResponse
+    public function update(Request $request, $id): RedirectResponse
+    {
+        self::CategoryValidator($request, $id);
+        return redirect()->back()->with('success', 'category updated with success');
+    }
+
+    /**
+     * @param $id
+     * @return RedirectResponse
+     */
+    public function destroy($id): RedirectResponse
+    {
+        Category::destroy($id);
+        return redirect()->back()->with('success', 'category deleted with success');
+    }
+
+    /**
+     * @throws ValidationException
+     */
+    public function CategoryValidator(Request $request, $id = null)
     {
         Validator::make($request->all(), [
             'name' => 'required|string|min:2|max:25',
         ])->validate();
 
-        $category = Category::find($category);
+        $category = $id ? Category::find($id) : new Category();
         $category->name = $request->name;
         $category->is_income = $request->is_income ? 1 : 0;
+        $category->user_id = Auth::id();
         $category->save();
-        return redirect()->back()->with('success','category updated with success');
-    }
-
-    /**
-     * @param Category $category
-     * @return RedirectResponse
-     */
-    public function destroy(Category $category): RedirectResponse
-    {
-        $category = Category::find($category);
-        $category->destroy();
-        return redirect()->back()->with('success', 'category deleted with success');
     }
 }
