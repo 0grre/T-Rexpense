@@ -26,8 +26,9 @@ class CategoryController extends Controller
      */
     public function store(Request $request): RedirectResponse
     {
-        self::CategoryValidator($request);
-        return redirect()->back()->with('success', 'category created with success');
+        $this->CategoryValidator($request);
+
+        return redirect()->back()->with('success','category created with success');
     }
 
     /**
@@ -38,8 +39,9 @@ class CategoryController extends Controller
      */
     public function update(Request $request, $id): RedirectResponse
     {
-        self::CategoryValidator($request, $id);
-        return redirect()->back()->with('success', 'category updated with success');
+        $this->CategoryValidator($request, $id);
+
+        return redirect()->back()->with('success','category updated with success');
     }
 
     /**
@@ -48,23 +50,28 @@ class CategoryController extends Controller
      */
     public function destroy($id): RedirectResponse
     {
-        Category::destroy($id);
+        $category = Category::find($id);
+        $category->destroy();
         return redirect()->back()->with('success', 'category deleted with success');
     }
 
     /**
+     * @param Request $request
+     * @param $id
      * @throws ValidationException
      */
     public function CategoryValidator(Request $request, $id = null)
     {
         Validator::make($request->all(), [
             'name' => 'required|string|min:2|max:25',
+            'is_income' => 'required|boolean',
         ])->validate();
 
         $category = $id ? Category::find($id) : new Category();
-        $category->name = $request->name;
-        $category->is_income = $request->is_income ? 1 : 0;
-        $category->user_id = Auth::id();
+        $category->name = $request->name ?? $category->name;
+        $category->is_income = $request->is_income ?? $category->is_income;
+        $category->user_id = $id ? $category->user_id : Auth::id();
+
         $category->save();
     }
 }

@@ -1,11 +1,14 @@
 <?php
 
+use App\Http\Controllers\BudgetController;
 use App\Http\Controllers\CategoryController;
-use App\Http\Controllers\Controller;
-use App\Http\Controllers\ExpenseController;
-use App\Models\Expense;
+use App\Http\Controllers\RecurrentController;
+use App\Http\Controllers\TransactionController;
+use App\Http\Resources\TransactionResource;
+use App\Models\Budget;
+use App\Models\Category;
 use App\Models\Recurrent;
-use App\Models\User;
+use App\Models\Transaction;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
@@ -14,21 +17,34 @@ Route::get('/', function () {
 });
 
 Route::middleware(['auth'])->group(function () {
-    Route::get('/dashboard', [Controller::class, 'index'])->name('dashboard');
+    Route::get('/dashboard', function () {
+        return view('dashboard', [
+            'categories' => Category::where('user_id', Auth::user()->getAuthIdentifier())->get(),
+            'transactions' => TransactionResource::collection(Transaction::where('user_id', Auth::user()->getAuthIdentifier())->get()),
+            'recurrents' => TransactionResource::collection(Recurrent::where('user_id', Auth::user()->getAuthIdentifier())->get()),
+            'budgets' => TransactionResource::collection(Budget::where('user_id', Auth::user()->getAuthIdentifier())->get()),
+        ]);
+    })->name('dashboard');
+
 
     Route::post('/categories', [CategoryController::class, 'store'])->name('categories.store');
     Route::put('/categories/{id}', [CategoryController::class, 'update'])->name('categories.update');
     Route::delete('/categories/{id}', [CategoryController::class, 'destroy'])->name('categories.destroy');
 
-    Route::post('/expenses', [ExpenseController::class, 'store'])->name('expenses.store');
-    Route::put('/expenses/{id}', [ExpenseController::class, 'update'])->name('expenses.update');
-    Route::delete('/expenses/{id}', [ExpenseController::class, 'destroy'])->name('expenses.destroy');
+    Route::post('/transactions', [TransactionController::class, 'store'])->name('transactions.store');
+    Route::put('/transactions/{id}', [TransactionController::class, 'update'])->name('transactions.update');
+    Route::delete('/transactions/{id}', [TransactionController::class, 'destroy'])->name('transactions.destroy');
+
+    Route::post('/recurrents', [RecurrentController::class, 'store'])->name('recurrents.store');
+    Route::put('/recurrents/{id}', [RecurrentController::class, 'update'])->name('recurrents.update');
+    Route::delete('/recurrents/{id}', [RecurrentController::class, 'destroy'])->name('recurrents.destroy');
+
+    Route::post('/budgets', [BudgetController::class, 'store'])->name('budgets.store');
+    Route::put('/budgets/{id}', [BudgetController::class, 'update'])->name('budgets.update');
+    Route::delete('/budgets/{id}', [BudgetController::class, 'destroy'])->name('budgets.destroy');
 });
 
-/**
- * Test
- */
 Route::get('/test', function () {
-    Recurrent::destroy(4);
+
 });
 require __DIR__.'/auth.php';

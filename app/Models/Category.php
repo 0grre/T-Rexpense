@@ -12,8 +12,6 @@ class Category extends Model
     use HasFactory;
 
     /**
-     * The attributes that are mass assignable.
-     *
      * @var array<int, string>
      */
     protected $fillable = [
@@ -25,9 +23,9 @@ class Category extends Model
     /**
      * @return HasMany
      */
-    public function expenses(): HasMany
+    public function transactions(): HasMany
     {
-        return $this->hasMany(Expense::class);
+        return $this->hasMany(Transaction::class);
     }
 
     /**

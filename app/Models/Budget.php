@@ -4,7 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 
-class Recurrent extends Transaction
+class Budget extends Transaction
 {
     use HasFactory;
 
@@ -17,4 +17,5 @@ class Recurrent extends Transaction
         'category_id',
         'user_id',
     ];
+
 }
