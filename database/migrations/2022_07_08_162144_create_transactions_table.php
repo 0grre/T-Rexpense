@@ -19,6 +19,8 @@ return new class extends Migration
             $table->double('amount', 10, 2);
             $table->unsignedBigInteger('category_id')->unsigned();
             $table->foreign('category_id')->references('id')->on('categories')->onDelete('cascade');
+            $table->unsignedBigInteger('recurrent_id')->nullable()->unsigned();
+            $table->foreign('recurrent_id')->references('id')->on('recurrents')->onDelete('cascade');
             $table->unsignedBigInteger('user_id')->unsigned();
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
             $table->dateTime('paid_at');

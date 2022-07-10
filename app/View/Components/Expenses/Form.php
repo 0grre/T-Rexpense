@@ -23,6 +23,6 @@ class Form extends Component
      */
     public function render()
     {
-        return view('components.expense.form');
+        return view('components.budget.form');
     }
 }

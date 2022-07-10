@@ -19,10 +19,10 @@ Route::get('/', function () {
 Route::middleware(['auth'])->group(function () {
     Route::get('/dashboard', function () {
         return view('dashboard', [
-            'categories' => Category::where('user_id', Auth::user()->getAuthIdentifier())->get(),
+            'categories' => Category::where('user_id', Auth::user()->getAuthIdentifier())->orderBy('name')->get(),
             'transactions' => TransactionResource::collection(Transaction::where('user_id', Auth::user()->getAuthIdentifier())->get()),
             'recurrents' => TransactionResource::collection(Recurrent::where('user_id', Auth::user()->getAuthIdentifier())->get()),
-            'budgets' => TransactionResource::collection(Budget::where('user_id', Auth::user()->getAuthIdentifier())->get()),
+            'budgets' => TransactionResource::collection(Budget::where('user_id', Auth::user()->getAuthIdentifier())->orderBy('name')->get()),
         ]);
     })->name('dashboard');
 

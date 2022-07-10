@@ -39,7 +39,7 @@ class RecurrentController extends Controller
      */
     public function destroy($id): RedirectResponse
     {
-        Recurrent::find($id)->destroy();
+        Recurrent::destroy($id);
         return redirect()->back()->with('success', 'Recurrent deleted with success');
     }
 }

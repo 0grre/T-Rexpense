@@ -39,7 +39,7 @@ class BudgetController extends Controller
      */
     public function destroy($id): RedirectResponse
     {
-        Budget::find($id)->destroy();
+        Budget::destroy($id);
         return redirect()->back()->with('success', 'Budget deleted with success');
     }
 }

@@ -33,17 +33,20 @@ class Transaction extends Model
      */
     public function StoreUpdateValidator(Request $request, $id = null): void
     {
+//        dd($request->name, $request->amount, $request->category_id);
         Validator::make($request->all(), [
             'name' => 'required|string|min:2|max:25',
-            'amount' => 'required|decimal',
+            'amount' => 'required|numeric',
             'paid_at' => 'datetime',
             'category_id' => 'required',
         ])->validate();
 
+        if($request->paid_at){
+            $this->paid_at = $request->paid_at;
+        }
 
         $this->name = $request->name ?? $this->name;
         $this->amount = $request->amount ?? $this->amount;
-        $this->paid_at = $request->paid_at ?? $this->paid_at;
         $this->category_id = $request->category_id ?? $this->category_id;
         $this->user_id = $id ? $this->user_id : Auth::id();
 
