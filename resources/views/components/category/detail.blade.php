@@ -17,13 +17,13 @@
                         <label class="label">
                             <span class="label-text">Enter name</span>
                         </label>
-                        <input name="name" type="text" placeholder="{{ $category->name }}" value="{{ $category->name }}" class="input input-ghost w-full max-w-xs""/>
+                        <input name="name" type="text" placeholder="{{ $category->name }}" value="{{ $category->name }}" class="input input-ghost w-full max-w-xs"/>
                     </div>
                     <div class="form-control w-full max-w-xs">
-                        <label class="label">
+                        <label class="label cursor-pointer">
                             <span class="label-text">Is expense?</span>
+                            <input type="checkbox" name="is_expense" @checked(old(1, $category->is_expense))  class="checkbox checkbox-primary checkbox-sm"/>
                         </label>
-                        <input name="is_expense" type="checkbox" class="toggle toggle-primary"  @checked(old(1, $category->is_expense)) />
                     </div>
                 </div>
                 <div class="modal-action">

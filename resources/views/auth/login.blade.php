@@ -44,6 +44,7 @@
                 <div class="card-body">
                     <form method="POST" action="{{ route('login') }}">
                         @csrf
+                        <!-- Email Address -->
                         <div class="form-control">
                             <label class="label">
                                 <span class="label-text">{{ __('Email') }}</span>
@@ -51,6 +52,7 @@
                             <input type="text" placeholder="email" name="email" value="{{ old('email') }}"
                                    class="input input-bordered" required/>
                         </div>
+                        <!-- Password -->
                         <div class="form-control">
                             <label class="label">
                                 <span class="label-text">{{ __('Password') }}</span>

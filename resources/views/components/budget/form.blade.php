@@ -2,7 +2,7 @@
 <label for="new-budget-modal" class="btn btn-outline btn-primary btn-xs">New budget</label>
 
 <!-- Put this part before </body> tag -->
-<input type="checkbox" id="new-budget-modal" class="modal-toggle" />
+<input type="checkbox" id="new-budget-modal" class="modal-toggle"/>
 <div class="modal modal-bottom sm:modal-middle">
     <div class="modal-box">
         <h3 class="font-bold text-lg mb-8">New budget</h3>
@@ -15,7 +15,8 @@
                         <span class="label-text">Enter name</span>
                     </label>
                     <label class="input-group">
-                        <input name="name" type="text" placeholder="Budget name here" class="input input-bordered input-primary w-full max-w-xs"/>
+                        <input name="name" type="text" placeholder="Budget name here"
+                               class="input input-bordered input-primary w-full max-w-xs"/>
                     </label>
                 </div>
 
@@ -24,7 +25,7 @@
                         <span class="label-text">Enter amount</span>
                     </label>
                     <label class="input-group">
-                        <input name="amount" type="text" placeholder="0.01" class="input input-bordered" />
+                        <input name="amount" type="text" placeholder="0.01" class="input input-bordered"/>
                         <span class="material-symbols-outlined">
                             euro
                         </span>
@@ -35,14 +36,12 @@
                     <label class="label">
                         <span class="label-text">Select budget category</span>
                     </label>
-                    <label class="input">
-                        <select name="category_id" class="select select-bordered select-primary w-full max-w-xs">
-                            <option disabled selected>Pick budget category</option>
-                            @foreach($categories as $category)
-                                <option value="{{$category->id}}">{{ $category->name }}</option>
-                            @endforeach
-                        </select>
-                    </label>
+                    <select name="category_id" class="select select-bordered select-primary w-full max-w-xs">
+                        <option disabled selected>Pick budget category</option>
+                        @foreach($categories as $category)
+                            <option value="{{$category->id}}">{{ $category->name }}</option>
+                        @endforeach
+                    </select>
                 </div>
             </div>
 

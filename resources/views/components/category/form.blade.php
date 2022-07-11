@@ -17,10 +17,10 @@
                     <input name="name" type="text" placeholder="Category name here" class="input input-bordered input-primary w-full max-w-xs"/>
                 </div>
                 <div class="form-control w-full max-w-xs">
-                    <label class="label">
+                    <label class="label cursor-pointer">
                         <span class="label-text">Is expense?</span>
+                        <input type="checkbox" name="is_expense" checked="checked" class="checkbox checkbox-primary checkbox-sm"/>
                     </label>
-                    <input name="is_expense" type="checkbox" class="toggle toggle-primary" checked />
                 </div>
             </div>
 
