@@ -1,56 +1,75 @@
 <x-guest-layout>
-    <x-auth-card>
-        <x-slot name="logo">
-            <a href="/">
-                <x-application-logo class="w-20 h-20 fill-current text-gray-500" />
-            </a>
-        </x-slot>
-
-        <!-- Session Status -->
-        <x-auth-session-status class="mb-4" :status="session('status')" />
-
-        <!-- Validation Errors -->
-        <x-auth-validation-errors class="mb-4" :errors="$errors" />
-
-        <form method="POST" action="{{ route('login') }}">
-            @csrf
-
-            <!-- Email Address -->
-            <div>
-                <x-label for="email" :value="__('Email')" />
-
-                <x-input id="email" class="block mt-1 w-full" type="email" name="email" :value="old('email')" required autofocus />
+    <div>
+        @if (session('status'))
+            <div class="alert alert-warning shadow-lg">
+                <div>
+                    <svg xmlns="http://www.w3.org/2000/svg" class="stroke-current flex-shrink-0 h-6 w-6" fill="none"
+                         viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                              d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/>
+                    </svg>
+                    <span>{{ session('status') }}</span>
+                </div>
             </div>
-
-            <!-- Password -->
-            <div class="mt-4">
-                <x-label for="password" :value="__('Password')" />
-
-                <x-input id="password" class="block mt-1 w-full"
-                                type="password"
-                                name="password"
-                                required autocomplete="current-password" />
+        @endif
+        @if ($errors->any())
+            @foreach ($errors->all() as $error)
+                <div class="alert alert-error shadow-lg">
+                    <div>
+                        <svg xmlns="http://www.w3.org/2000/svg" class="stroke-current flex-shrink-0 h-6 w-6" fill="none"
+                             viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                  d="M10 14l2-2m0 0l2-2m-2 2l-2-2m2 2l2 2m7-2a9 9 0 11-18 0 9 9 0 0118 0z"/>
+                        </svg>
+                        <span>{{ $error }}</span>
+                    </div>
+                </div>
+            @endforeach
+        @endif
+    </div>
+    <div class="hidden fixed top-0 right-0 px-6 py-4 sm:block">
+        <a href="{{ url('/') }}" class="link link-primary mx-2">Back</a>
+        @if (Route::has('register'))
+            <a href="{{ route('register') }}" class="link link-primary mx-2">Register</a>
+        @endif
+    </div>
+    <div class="hero min-h-screen bg-base-200">
+        <div class="hero-content flex-col lg:flex-row-reverse">
+            <div class="text-center lg:text-left">
+                <h1 class="text-5xl font-bold">Login now! 🦖</h1>
+                <p class="py-6">Happy to see you again! <br> Log in and add your new expenses.
+                    You can also check your statistics to find out where you spend your money the most.</p>
             </div>
-
-            <!-- Remember Me -->
-            <div class="block mt-4">
-                <label for="remember_me" class="inline-flex items-center">
-                    <input id="remember_me" type="checkbox" class="rounded border-gray-300 text-indigo-600 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50" name="remember">
-                    <span class="ml-2 text-sm text-gray-600">{{ __('Remember me') }}</span>
-                </label>
+            <div class="card flex-shrink-0 w-full max-w-sm shadow-2xl bg-base-100">
+                <div class="card-body">
+                    <form method="POST" action="{{ route('login') }}">
+                        @csrf
+                        <div class="form-control">
+                            <label class="label">
+                                <span class="label-text">{{ __('Email') }}</span>
+                            </label>
+                            <input type="text" placeholder="email" name="email" value="{{ old('email') }}"
+                                   class="input input-bordered" required/>
+                        </div>
+                        <div class="form-control">
+                            <label class="label">
+                                <span class="label-text">{{ __('Password') }}</span>
+                            </label>
+                            <input placeholder="password" type="password" name="password" class="input input-bordered"
+                                   required/>
+                            @if (Route::has('password.request'))
+                                <label class="label">
+                                    <a href="{{ route('password.request') }}"
+                                       class="label-text-alt link link-hover">{{ __('Forgot your password?') }}</a>
+                                </label>
+                            @endif
+                        </div>
+                        <div class="form-control mt-6">
+                            <button class="btn btn-primary">{{ __('Login') }}</button>
+                        </div>
+                    </form>
+                </div>
             </div>
-
-            <div class="flex items-center justify-end mt-4">
-                @if (Route::has('password.request'))
-                    <a class="underline text-sm text-gray-600 hover:text-gray-900" href="{{ route('password.request') }}">
-                        {{ __('Forgot your password?') }}
-                    </a>
-                @endif
-
-                <x-button class="ml-3">
-                    {{ __('Log in') }}
-                </x-button>
-            </div>
-        </form>
-    </x-auth-card>
+        </div>
+    </div>
 </x-guest-layout>

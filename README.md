@@ -1,8 +1,8 @@
-# T-Rexpense
+# 🦖 T-Rexpense
 
-Manage your monthly and occasional expenses with T-Rexpenses! 🦖  
+Manage your monthly and occasional expenses with T-Rexpense! 
 
-*Web app develop with Laravel.*
+*Web app develop with Laravel 9.*
 
 ```
 ~ git clone https://github.com/jbloup/T-Rexpense.git
@@ -16,5 +16,6 @@ configure DATABASE in .env
 
 ```
 ~ php artisan migrate
+~ php artisan key:generate 
 ```
 
