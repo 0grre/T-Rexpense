@@ -23,6 +23,8 @@ Route::middleware(['auth'])->group(function () {
             'transactions' => TransactionResource::collection(Transaction::where('user_id', Auth::user()->getAuthIdentifier())->get()),
             'recurrents' => TransactionResource::collection(Recurrent::where('user_id', Auth::user()->getAuthIdentifier())->get()),
             'budgets' => TransactionResource::collection(Budget::where('user_id', Auth::user()->getAuthIdentifier())->orderBy('name')->get()),
+            'totals' => TransactionController::getTotalMonthlyAmounts(),
+            'chart_data' => json_encode([0, 10, 5, 2, 20, 30, 45])
         ]);
     })->name('dashboard');
 

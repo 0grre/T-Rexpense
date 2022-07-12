@@ -10,33 +10,34 @@
         <form method="POST" action="{{ route('recurrents.store') }}">
             @csrf
             <div class="flex flex-col gap-4">
+                <!-- Name -->
                 <div class="form-control w-full max-w-xs">
                     <label class="label">
                         <span class="label-text">Enter name</span>
                     </label>
                     <label class="input-group">
                         <input name="name" type="text" placeholder="Recurrent transaction name here"
-                               class="input input-bordered input-primary w-full max-w-xs"/>
+                               class="input input-bordered input-primary w-full max-w-xs" required/>
                     </label>
                 </div>
-
+                <!-- Amount -->
                 <div class="form-control w-full max-w-xs">
                     <label class="label">
                         <span class="label-text">Enter amount</span>
                     </label>
                     <label class="input-group">
-                        <input name="amount" type="text" placeholder="0.01" class="input input-bordered"/>
+                        <input name="amount" type="text" placeholder="0.01" class="input input-bordered" required/>
                         <span class="material-symbols-outlined">
                             euro
                         </span>
                     </label>
                 </div>
-
+                <!-- Category -->
                 <div class="form-control w-full max-w-xs">
                     <label class="label">
                         <span class="label-text">Select recurrent transaction category</span>
                     </label>
-                    <select name="category_id" class="select select-bordered select-primary w-full max-w-xs">
+                    <select name="category_id" class="select select-bordered select-primary w-full max-w-xs" required>
                         <option disabled selected>Pick recurrent transaction category</option>
                         @foreach($categories as $category)
                             <option value="{{$category->id}}">{{ $category->name }}</option>

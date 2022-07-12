@@ -14,7 +14,7 @@ class TransactionResource extends JsonResource
     #[ArrayShape([
         'id' => "mixed",
         'name' => "mixed",
-        'amount' => "mixed",
+        'total' => "mixed",
         'category' => "mixed",
         'user' => "mixed",
         'paid_at' => "mixed",
@@ -26,10 +26,10 @@ class TransactionResource extends JsonResource
         return [
             'id' => $this->id,
             'name' => $this->name,
-            'amount' => $this->amount,
+            'total' => $this->amount,
             'category' => $this->category,
             'user' => $this->user,
-            'paid_at' => $this->paid_at,
+            'paid_at' => $this->paid_at->format('Y-m-d'),
             'created_at' => $this->created_at,
             'updated_at' => $this->updated_at,
         ];

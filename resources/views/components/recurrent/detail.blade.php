@@ -8,11 +8,82 @@
         </span>
             €
         </label>
-        <button>
-        <span class="material-symbols-outlined">
-            currency_exchange
-        </span>
-        </button>
+        <!-- Open new recurrent transaction modal -->
+        @if( !$recurrent->is_paid() )
+            <div class="tooltip hover:tooltip-open tooltip-right" data-tip="Store this transaction for this month">
+                <label for="new-recurrent-transaction-modal-{{ $recurrent->id }}">
+                    <span class="cursor-pointer material-symbols-outlined">
+                        currency_exchange
+                    </span>
+                </label>
+            </div>
+        @endif
+        <!-- Recurrent transaction modal -->
+        <input type="checkbox" id="new-recurrent-transaction-modal-{{ $recurrent->id }}" class="modal-toggle"/>
+        <div class="modal modal-bottom sm:modal-middle">
+            <div class="modal-box">
+                <h3 class="font-bold text-lg mb-8">New transaction</h3>
+                <label for="new-recurrent-transaction-modal-{{ $recurrent->id }}"
+                       class="btn btn-sm btn-circle absolute right-2 top-2">✕</label>
+                <form method="POST" action="{{ route('transactions.store') }}">
+                    @csrf
+                    <div class="flex flex-col gap-4">
+                        <!-- Recurrent Id -->
+                        <input type="hidden" name="recurrent_id" value="{{ $recurrent->id }}">
+                        <!-- Name -->
+                        <div class="form-control w-full max-w-xs">
+                            <label class="label">
+                                <span class="label-text">Enter name</span>
+                            </label>
+                            <label class="input-group">
+                                <input name="name" type="text" placeholder="transaction name here"
+                                       value="{{ $recurrent->name }}"
+                                       class="input input-bordered input-primary w-full max-w-xs" required/>
+                            </label>
+                        </div>
+                        <!-- Amount -->
+                        <div class="form-control w-full max-w-xs">
+                            <label class="label">
+                                <span class="label-text">Enter amount</span>
+                            </label>
+                            <label class="input-group">
+                                <input name="amount" type="text" placeholder="0.01" class="input input-bordered"
+                                       value="{{ $recurrent->amount }}" required/>
+                                <span class="material-symbols-outlined">
+                            euro
+                        </span>
+                            </label>
+                        </div>
+                        <!-- Paid Date -->
+                        <div class="form-control w-full max-w-xs">
+                            <label class="label">
+                                <span class="label-text">Enter paid date</span>
+                            </label>
+                            <label class="input-group">
+                                <input name="paid_at" type="date" value="{{ Carbon\Carbon::now()->format('Y-m-d') }}"
+                                       class="input input-bordered" required/>
+                            </label>
+                        </div>
+                        <!-- Category -->
+                        <div class="form-control w-full max-w-xs">
+                            <label class="label">
+                                <span class="label-text">Select transaction category</span>
+                            </label>
+                            <select name="category_id" class="select select-bordered select-primary w-full max-w-xs"
+                                    required>
+                                @foreach($categories as $category)
+                                    <option value="{{$category->id}}"
+                                            @if($category->id == $recurrent->category_id) selected @endif>{{ $category->name }}</option>
+                                @endforeach
+                            </select>
+                        </div>
+                    </div>
+                    <div class="modal-action">
+                        <button class="btn btn-outline btn-success">Create transaction</button>
+                    </div>
+                </form>
+            </div>
+        </div>
     </div>
     <!-- Update modal tag -->
     <input type="checkbox" id="update-recurrent-modal-{{$recurrent->id}}" class="modal-toggle"/>
@@ -24,7 +95,7 @@
                 @method('put')
                 @csrf
                 <div class="flex flex-col gap-4">
-
+                    <!-- Name -->
                     <div class="form-control w-full max-w-xs">
                         <label class="label">
                             <span class="label-text">Enter name</span>
@@ -32,28 +103,29 @@
                         <label class="input-group">
                             <input name="name" type="text" placeholder="{{ $recurrent->name }}"
                                    value="{{ $recurrent->name }}"
-                                   class="input input-bordered input-primary w-full max-w-xs"/>
+                                   class="input input-bordered input-primary w-full max-w-xs" required/>
                         </label>
                     </div>
-
+                    <!-- Amount -->
                     <div class="form-control w-full max-w-xs">
                         <label class="label">
                             <span class="label-text">Enter amount</span>
                         </label>
                         <label class="input-group">
                             <input name="amount" type="text" placeholder="{{ $recurrent->amount }}"
-                                   value="{{ $recurrent->amount }}" class="input input-bordered"/>
+                                   value="{{ $recurrent->amount }}" class="input input-bordered" required/>
                             <span class="material-symbols-outlined">
                             euro
                         </span>
                         </label>
                     </div>
-
+                    <!-- Category -->
                     <div class="form-control w-full max-w-xs">
                         <label class="label">
                             <span class="label-text">Select recurrent transaction category</span>
                         </label>
-                        <select name="category_id" class="select select-bordered select-primary w-full max-w-xs">
+                        <select name="category_id" class="select select-bordered select-primary w-full max-w-xs"
+                                required>
                             @foreach($categories as $category)
                                 <option value="{{$category->id}}"
                                         @if($category->id == $recurrent->category_id) selected @endif>{{ $category->name }}</option>

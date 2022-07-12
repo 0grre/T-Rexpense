@@ -1,8 +1,12 @@
 @foreach($transactions as $transaction)
     <!-- Open update modal -->
-    <label for="update-transaction-modal-{{$transaction->id}}"
-           class="cursor-pointer @if($transaction->category->is_expense == 0) text-success @else text-error @endif">
-        {{ $transaction->name . ' ' . $transaction->amount . ' €' }}
+    <label for="update-transaction-modal-{{$transaction->id}}" class="cursor-pointer">
+        {{ $transaction->name }}
+        <span class="@if($transaction->category->is_expense == 0) text-success @else text-error @endif">
+            {{ $transaction->amount }}
+            </span>
+        €
+        <span class="text-xs text-secondary"> {{ date('d-m', strtotime($transaction->paid_at)) }}</span>
     </label>
     <!-- Update modal tag -->
     <input type="checkbox" id="update-transaction-modal-{{$transaction->id}}" class="modal-toggle"/>
@@ -15,7 +19,7 @@
                 @method('put')
                 @csrf
                 <div class="flex flex-col gap-4">
-
+                    <!-- Name -->
                     <div class="form-control w-full max-w-xs">
                         <label class="label">
                             <span class="label-text">Enter name</span>
@@ -23,28 +27,39 @@
                         <label class="input-group">
                             <input name="name" type="text" placeholder="{{ $transaction->name }}"
                                    value="{{ $transaction->name }}"
-                                   class="input input-bordered input-primary w-full max-w-xs"/>
+                                   class="input input-bordered input-primary w-full max-w-xs" required/>
                         </label>
                     </div>
-
+                    <!-- Amount -->
                     <div class="form-control w-full max-w-xs">
                         <label class="label">
                             <span class="label-text">Enter amount</span>
                         </label>
                         <label class="input-group">
                             <input name="amount" type="text" placeholder="{{ $transaction->amount }}"
-                                   value="{{ $transaction->amount }}" class="input input-bordered"/>
+                                   value="{{ $transaction->amount }}" class="input input-bordered" required/>
                             <span class="material-symbols-outlined">
                             euro
                         </span>
                         </label>
                     </div>
-
+                    <!-- Paid Date -->
+                    <div class="form-control w-full max-w-xs">
+                        <label class="label">
+                            <span class="label-text">Enter paid date</span>
+                        </label>
+                        <label class="input-group">
+                            <input name="paid_at" type="date" value="{{ $transaction->paid_at }}"
+                                   class="input input-bordered" required/>
+                        </label>
+                    </div>
+                    <!-- Category -->
                     <div class="form-control w-full max-w-xs">
                         <label class="label">
                             <span class="label-text">Select transaction category</span>
                         </label>
-                        <select name="category_id" class="select select-bordered select-primary w-full max-w-xs">
+                        <select name="category_id" class="select select-bordered select-primary w-full max-w-xs"
+                                required>
                             @foreach($categories as $category)
                                 <option value="{{$category->id}}"
                                         @if($category->id == $transaction->category_id) selected @endif>{{ $category->name }}</option>

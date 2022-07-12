@@ -19,11 +19,27 @@ class Transaction extends Model
      */
     protected $fillable = [
         'name',
-        'amount',
+        'total',
         'paid_at',
         'category_id',
         'user_id',
     ];
+
+    /**
+     * @return BelongsTo
+     */
+    public function category(): BelongsTo
+    {
+        return $this->belongsTo(Category::class);
+    }
+
+    /**
+     * @return BelongsTo
+     */
+    public function user(): BelongsTo
+    {
+        return $this->belongsTo(User::class);
+    }
 
     /**
      * @param Request $request
@@ -33,11 +49,10 @@ class Transaction extends Model
      */
     public function StoreUpdateValidator(Request $request, $id = null): void
     {
-//        dd($request->name, $request->amount, $request->category_id);
         Validator::make($request->all(), [
             'name' => 'required|string|min:2|max:25',
-            'amount' => 'required|numeric',
-            'paid_at' => 'datetime',
+            'total' => 'required|numeric',
+            'paid_at' => 'date',
             'category_id' => 'required',
         ])->validate();
 
@@ -54,18 +69,10 @@ class Transaction extends Model
     }
 
     /**
-     * @return BelongsTo
+     * @return bool
      */
-    public function category(): BelongsTo
+    public function is_expense(): bool
     {
-        return $this->belongsTo(Category::class);
-    }
-
-    /**
-     * @return BelongsTo
-     */
-    public function user(): BelongsTo
-    {
-        return $this->belongsTo(User::class);
+        return $this->category->is_expense == 1;
     }
 }

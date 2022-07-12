@@ -27,6 +27,8 @@
         @endif
         </div>
         <div class="py-12">
+            <x-total.actual :totals="$totals"/>
+
             <div class="m-8 p-4 w-64 outline outline-primary rounded-lg flex flex-col gap-2">
                 <h3 class="card-title">Recurrent transactions</h3>
                 <x-recurrent.detail :recurrents="$recurrents" :categories="$categories"/>
@@ -49,6 +51,10 @@
                 <h3 class="card-title">Categories</h3>
                 <x-category.detail :categories="$categories"/>
                 <x-category.form/>
+            </div>
+
+            <div class="m-8 p-4 w-1/2 outline outline-primary rounded-lg flex flex-col gap-2">
+            <x-chart.bar :test="$chart_data"/>
             </div>
         </div>
     </x-slot>

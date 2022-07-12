@@ -2,7 +2,7 @@
 <label for="new-category-modal" class="btn btn-outline btn-primary btn-xs">New category</label>
 
 <!-- Put this part before </body> tag -->
-<input type="checkbox" id="new-category-modal" class="modal-toggle" />
+<input type="checkbox" id="new-category-modal" class="modal-toggle"/>
 <div class="modal modal-bottom sm:modal-middle">
     <div class="modal-box">
         <h3 class="font-bold text-lg mb-8">New category</h3>
@@ -10,16 +10,20 @@
         <form method="POST" action="{{ route('categories.store') }}">
             @csrf
             <div class="flex flex-col gap-4">
+                <!-- Name -->
                 <div class="form-control w-full max-w-xs">
                     <label class="label">
                         <span class="label-text">Enter name</span>
                     </label>
-                    <input name="name" type="text" placeholder="Category name here" class="input input-bordered input-primary w-full max-w-xs"/>
+                    <input name="name" type="text" placeholder="Category name here"
+                           class="input input-bordered input-primary w-full max-w-xs" required/>
                 </div>
+                <!-- Is Expense -->
                 <div class="form-control w-full max-w-xs">
                     <label class="label cursor-pointer">
                         <span class="label-text">Is expense?</span>
-                        <input type="checkbox" name="is_expense" checked="checked" class="checkbox checkbox-primary checkbox-sm"/>
+                        <input type="checkbox" name="is_expense" checked="checked"
+                               class="checkbox checkbox-primary checkbox-sm"/>
                     </label>
                 </div>
             </div>

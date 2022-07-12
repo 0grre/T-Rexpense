@@ -14,35 +14,35 @@
                 @method('put')
                 @csrf
                 <div class="flex flex-col gap-4">
-
+                    <!-- Name -->
                     <div class="form-control w-full max-w-xs">
                         <label class="label">
                             <span class="label-text">Enter name</span>
                         </label>
                         <label class="input-group">
                             <input name="name" type="text" placeholder="{{ $budget->name }}" value="{{ $budget->name }}"
-                                   class="input input-bordered input-primary w-full max-w-xs"/>
+                                   class="input input-bordered input-primary w-full max-w-xs" required/>
                         </label>
                     </div>
-
+                    <!-- Amount -->
                     <div class="form-control w-full max-w-xs">
                         <label class="label">
                             <span class="label-text">Enter amount</span>
                         </label>
                         <label class="input-group">
                             <input name="amount" type="text" placeholder="{{ $budget->amount }}"
-                                   value="{{ $budget->amount }}" class="input input-bordered"/>
+                                   value="{{ $budget->amount }}" class="input input-bordered" required/>
                             <span class="material-symbols-outlined">
                             euro
                         </span>
                         </label>
                     </div>
-
+                    <!-- Category -->
                     <div class="form-control w-full max-w-xs">
                         <label class="label">
                             <span class="label-text">Select budget category</span>
                         </label>
-                        <select name="category_id" class="select select-bordered select-primary w-full max-w-xs">
+                        <select name="category_id" class="select select-bordered select-primary w-full max-w-xs" required>
                             @foreach($categories as $category)
                                 <option value="{{$category->id}}"
                                         @if($category->id == $budget->category_id) selected @endif>{{ $category->name }}</option>

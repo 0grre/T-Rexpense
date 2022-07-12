@@ -13,7 +13,7 @@ class Budget extends Transaction
      */
     protected $fillable = [
         'name',
-        'amount',
+        'total',
         'category_id',
         'user_id',
     ];
