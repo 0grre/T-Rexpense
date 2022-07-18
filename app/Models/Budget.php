@@ -17,5 +17,4 @@ class Budget extends Transaction
         'category_id',
         'user_id',
     ];
-
 }

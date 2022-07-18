@@ -1,10 +1,24 @@
-<div class="card w-96 bg-base-100 shadow-xl">
-    <div class="card-body">
-        <div class="tooltip hover:tooltip-open tooltip-top" data-tip="Actual total amount with paid expenses">
-        <h2 class="card-title my-4">{{ $totals['actual'] }} €</h2>
+<div class="card-body">
+    <div class="stats stats-vertical shadow">
+        <div class="stat">
+            <div class="stat-title">Current balance</div>
+            <div class="stat-value">{{ number_format($totals['actual'], 2) }} €</div>
+            <div class="stat-desc">{{ \Carbon\Carbon::now()->format('l jS \of F Y') }}</div>
         </div>
-        <div class="tooltip hover:tooltip-open tooltip-top" data-tip="final total amount with all monthly expenses">
-        <h2 class="card-title text-secondary my-4">{{ $totals['final'] }} €</h2>
+
+        <div class="stat">
+            <div class="stat-title">Account balance</div>
+            <div class="stat-value text-secondary">{{ number_format($totals['final'], 2) }} €</div>
+            <div class="stat-desc">{{ \Carbon\Carbon::now()->lastOfMonth()->format('l jS \of F Y') }}</div>
         </div>
+
+        @foreach($budgets as $budget)
+        <div class="stat">
+            <div class="stat-title">{{ $budget->name }}</div>
+            <div class="stat-value">{{ number_format($budget->actual_amount, 2) }} €</div>
+            <div class="stat-desc">{{ number_format($budget->amount, 2) }} € ({{ (($budget->actual_amount - $budget->amount) / $budget->amount) * 100  }} %)</div>
+        </div>
+        @endforeach
     </div>
 </div>
+

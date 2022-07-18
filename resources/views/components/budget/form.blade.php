@@ -26,7 +26,7 @@
                         <span class="label-text">Enter amount</span>
                     </label>
                     <label class="input-group">
-                        <input name="amount" type="text" placeholder="0.01" class="input input-bordered" required/>
+                        <input name="amount" type="number" step='0.01' placeholder="0.00" class="input input-bordered" required/>
                         <span class="material-symbols-outlined">
                             euro
                         </span>

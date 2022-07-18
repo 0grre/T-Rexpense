@@ -51,13 +51,18 @@ class Transaction extends Model
     {
         Validator::make($request->all(), [
             'name' => 'required|string|min:2|max:25',
-            'total' => 'required|numeric',
+            'amount' => 'required|numeric',
             'paid_at' => 'date',
             'category_id' => 'required',
         ])->validate();
 
+
         if($request->paid_at){
             $this->paid_at = $request->paid_at;
+        }
+
+        if($request->recurrent_id){
+            $this->recurrent_id = $request->recurrent_id;
         }
 
         $this->name = $request->name ?? $this->name;

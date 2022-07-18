@@ -1,16 +1,17 @@
+<div class="card-body">
 @foreach($recurrents as $recurrent)
     <div class="flex justify-between">
         <!-- Open update modal -->
         <label for="update-recurrent-modal-{{$recurrent->id}}" class="cursor-pointer">
             {{ $recurrent->name . ' '}}
             <span class="@if($recurrent->category->is_expense == 0) text-success @else text-error @endif">
-            {{  $recurrent->amount}}
+            {{  number_format($recurrent->amount, 2)}}
         </span>
             €
         </label>
         <!-- Open new recurrent transaction modal -->
         @if( !$recurrent->is_paid() )
-            <div class="tooltip hover:tooltip-open tooltip-right" data-tip="Store this transaction for this month">
+            <div class="tooltip hover:tooltip-open tooltip-left" data-tip="Store this transaction for this month">
                 <label for="new-recurrent-transaction-modal-{{ $recurrent->id }}">
                     <span class="cursor-pointer material-symbols-outlined">
                         currency_exchange
@@ -47,8 +48,8 @@
                                 <span class="label-text">Enter amount</span>
                             </label>
                             <label class="input-group">
-                                <input name="amount" type="text" placeholder="0.01" class="input input-bordered"
-                                       value="{{ $recurrent->amount }}" required/>
+                                <input name="amount" type="number" step='0.01' placeholder="{{ number_format($recurrent->amount, 2) }}" class="input input-bordered"
+                                       value="{{ number_format($recurrent->amount, 2) }}" required/>
                                 <span class="material-symbols-outlined">
                             euro
                         </span>
@@ -112,8 +113,8 @@
                             <span class="label-text">Enter amount</span>
                         </label>
                         <label class="input-group">
-                            <input name="amount" type="text" placeholder="{{ $recurrent->amount }}"
-                                   value="{{ $recurrent->amount }}" class="input input-bordered" required/>
+                            <input name="amount" type="number" step='0.01' placeholder="{{ number_format($recurrent->amount, 2) }}"
+                                   value="{{ number_format($recurrent->amount, 2) }}" class="input input-bordered" required/>
                             <span class="material-symbols-outlined">
                             euro
                         </span>
@@ -160,3 +161,4 @@
         </div>
     </div>
 @endforeach
+</div>
