@@ -37,7 +37,7 @@
                                 <span class="label-text">Enter name</span>
                             </label>
                             <label class="input-group">
-                                <input name="name" type="text" placeholder="transaction name here"
+                                <input name="name" type="text" placeholder="{{ $recurrent->name }}"
                                        value="{{ $recurrent->name }}"
                                        class="input input-bordered input-primary w-full max-w-xs" required/>
                             </label>
