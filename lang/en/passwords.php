@@ -13,7 +13,6 @@ return [
     |
     */
 
-    'reset' => 'Your password has been reset!',
     'sent' => 'We have emailed your password reset link!',
     'throttled' => 'Please wait before retrying.',
     'token' => 'This password reset token is invalid.',
@@ -21,8 +20,13 @@ return [
     'area' => "This is a secure area of the application. Please confirm your password before continuing.",
     'forgot' => [
         'title' => "Forgot your password?",
-        'text' => "No problem. Just let us know your email address and we will email you a password reset link that will allow you to choose a new one."
+        'text' => "No problem. Just let us know your email address and we will email you a password reset link that will allow you to choose a new one.",
+        'link' => "Send password reset link",
     ],
-    'link' => "Email Password Reset Link",
-
+    'reset' => [
+        'message' => 'Your password has been reset!',
+        'title' => "Reset Password!",
+        'text' => "Need to reset your password? Use your secret code!",
+        'link' => "Reset password",
+    ],
 ];

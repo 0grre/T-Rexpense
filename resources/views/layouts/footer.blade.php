@@ -1,9 +1,9 @@
-<footer class="footer footer-center p-10  text-base-content rounded">
-    <div class="grid grid-flow-col gap-4">
-        <a class="link link-hover">About us</a>
-        <a href="/privacy" class="link link-hover">Privacy</a>
-        <a class="link link-hover">Jobs</a>
-        <a class="link link-hover">Press kit</a>
+<footer class="footer footer-center p-10 text-base-content">
+    <div class="grid grid-flow-col gap-3">
+        <a href="https://jbloup.fr"  class="link link-hover first-letter:capitalize">{{__('content.footer.about')}}</a>
+        <a href="/terms" class="link link-hover first-letter:capitalize">{{__('content.footer.terms')}}</a>
+        <a href="/privacy"  class="link link-hover first-letter:capitalize">{{__('content.footer.privacy policy')}}</a>
+{{--        <a href="/cookies"  class="link link-hover first-letter:capitalize">{{__('content.footer.cookies')}}</a>--}}
     </div>
 {{--    <div>--}}
 {{--        <div class="grid grid-flow-col gap-4">--}}
@@ -13,6 +13,6 @@
 {{--        </div>--}}
 {{--    </div>--}}
     <div>
-        <p>Copyright © 2022 - All right reserved by jbloup</p>
+        <p>Developed by <a class="link link-hover" href="https://github.com/jbloup">ogre</a> - 2022 | version 1.0</p>
     </div>
 </footer>

@@ -1,5 +1,5 @@
-<x-app-layout>
-    <div>
+@extends('layouts.app')
+@section('content')
         @if (session('status'))
             <div class="alert alert-warning shadow-lg">
                 <div>
@@ -26,8 +26,7 @@
                 </div>
             @endforeach
         @endif
-    </div>
-    <div class="hero min-h-screen bg-base-200">
+    <div class="hero bg-base-200 my-auto">
         <div class="hero-content flex-col lg:flex-row-reverse">
             <div class="text-center lg:text-left">
                 <h1 class="text-5xl font-bold">{{ __('auth.login.title') }} 🦖</h1>
@@ -40,7 +39,7 @@
                         <!-- Email Address -->
                         <div class="form-control">
                             <label class="label">
-                                <span class="label-text">{{ __('form.email') }}</span>
+                                <span class="label-text first-letter:capitalize">{{ __('form.email') }}</span>
                             </label>
                             <input type="text" placeholder="{{ __('form.email') }}" name="email" value="{{ old('email') }}"
                                    class="input input-bordered" required/>
@@ -48,7 +47,7 @@
                         <!-- Password -->
                         <div class="form-control">
                             <label class="label">
-                                <span class="label-text">{{ __('form.password') }}</span>
+                                <span class="label-text first-letter:capitalize">{{ __('form.password') }}</span>
                             </label>
                             <input placeholder="{{ __('form.password') }}" type="password" name="password" class="input input-bordered"
                                    required/>
@@ -60,11 +59,11 @@
                             @endif
                         </div>
                         <div class="form-control mt-6">
-                            <button class="btn btn-primary">{{ __('auth.login.title') }}</button>
+                            <button class="btn btn-primary first-letter:capitalize">{{ __('auth.login.title') }}</button>
                         </div>
                     </form>
                 </div>
             </div>
         </div>
     </div>
-</x-app-layout>
+@endsection
