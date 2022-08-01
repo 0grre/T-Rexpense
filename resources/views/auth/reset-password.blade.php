@@ -1,4 +1,4 @@
-<x-guest-layout>
+<x-app-layout>
     <div>
         @if (session('status'))
             <div class="alert alert-warning shadow-lg">
@@ -79,4 +79,4 @@
             </div>
         </div>
     </div>
-</x-guest-layout>
+</x-app-layout>

@@ -1,4 +1,4 @@
-<x-guest-layout>
+<x-app-layout>
     <div>
         @if (session('status'))
             <div class="alert alert-warning shadow-lg">
@@ -36,8 +36,8 @@
     <div class="hero min-h-screen bg-base-200">
         <div class="hero-content flex-col lg:flex-row-reverse">
             <div class="text-center lg:text-left">
-                <h1 class="text-5xl font-bold">Forgot your password? 🦖</h1>
-                <p class="py-6">{{ __('No problem. Just let us know your email address and we will email you a password reset link that will allow you to choose a new one.') }}</p>
+                <h1 class="text-5xl font-bold">{{ __('passwords.forgot.title') }} 🦖</h1>
+                <p class="py-6">{{ __('passwords.forgot.text') }}</p>
             </div>
             <div class="card flex-shrink-0 w-full max-w-sm shadow-2xl bg-base-100">
                 <div class="card-body">
@@ -46,18 +46,18 @@
                         <!-- Email Address -->
                         <div class="form-control">
                             <label class="label">
-                                <span class="label-text">{{ __('Email') }}</span>
+                                <span class="label-text">Email</span>
                             </label>
                             <input type="text" placeholder="email" name="email" value="{{ old('email') }}"
                                    class="input input-bordered" required/>
                         </div>
 
                         <div class="form-control mt-6">
-                            <button class="btn btn-primary">{{ __('Email Password Reset Link') }}</button>
+                            <button class="btn btn-primary">{{ __('passwords.link') }}</button>
                         </div>
                     </form>
                 </div>
             </div>
         </div>
     </div>
-</x-guest-layout>
+</x-app-layout>

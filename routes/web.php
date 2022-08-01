@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\BudgetController;
 use App\Http\Controllers\CategoryController;
+use App\Http\Controllers\LanguageController;
 use App\Http\Controllers\RecurrentController;
 use App\Http\Controllers\TransactionController;
 use App\Http\Resources\TransactionResource;
@@ -15,6 +16,13 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('welcome');
 });
+
+Route::get('/privacy', function () {
+    return view('privacy');
+});
+
+//Route::get('lang/{lang}', ['as' => 'lang.switch', 'uses' => 'App\Http\Controllers\LanguageController@switchLang']);
+Route::get('lang/{lang}', [LanguageController::class, 'switchLang'])->name('lang.switch');
 
 Route::middleware(['auth'])->group(function () {
     Route::get('/dashboard', function () {

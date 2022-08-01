@@ -1,4 +1,4 @@
-<x-guest-layout>
+<x-app-layout>
     <div>
         @if (session('status'))
             <div class="alert alert-warning shadow-lg">
@@ -27,18 +27,11 @@
             @endforeach
         @endif
     </div>
-    <div class="hidden fixed top-0 right-0 px-6 py-4 sm:block">
-        <a href="{{ url('/') }}" class="link link-primary mx-2">Back</a>
-        @if (Route::has('register'))
-            <a href="{{ route('register') }}" class="link link-primary mx-2">Register</a>
-        @endif
-    </div>
     <div class="hero min-h-screen bg-base-200">
         <div class="hero-content flex-col lg:flex-row-reverse">
             <div class="text-center lg:text-left">
-                <h1 class="text-5xl font-bold">Login now! 🦖</h1>
-                <p class="py-6">Happy to see you again! <br> Log in and add your new expenses.
-                    You can also check your statistics to find out where you spend your money the most.</p>
+                <h1 class="text-5xl font-bold">{{ __('auth.login.title') }} 🦖</h1>
+                <p class="py-6">{{ __('auth.login.subtitle') }}<br>{{ __('auth.login.text') }}</p>
             </div>
             <div class="card flex-shrink-0 w-full max-w-sm shadow-2xl bg-base-100">
                 <div class="card-body">
@@ -47,31 +40,31 @@
                         <!-- Email Address -->
                         <div class="form-control">
                             <label class="label">
-                                <span class="label-text">{{ __('Email') }}</span>
+                                <span class="label-text">{{ __('form.email') }}</span>
                             </label>
-                            <input type="text" placeholder="email" name="email" value="{{ old('email') }}"
+                            <input type="text" placeholder="{{ __('form.email') }}" name="email" value="{{ old('email') }}"
                                    class="input input-bordered" required/>
                         </div>
                         <!-- Password -->
                         <div class="form-control">
                             <label class="label">
-                                <span class="label-text">{{ __('Password') }}</span>
+                                <span class="label-text">{{ __('form.password') }}</span>
                             </label>
-                            <input placeholder="password" type="password" name="password" class="input input-bordered"
+                            <input placeholder="{{ __('form.password') }}" type="password" name="password" class="input input-bordered"
                                    required/>
                             @if (Route::has('password.request'))
                                 <label class="label">
                                     <a href="{{ route('password.request') }}"
-                                       class="label-text-alt link link-hover">{{ __('Forgot your password?') }}</a>
+                                       class="label-text-alt link link-hover">{{ __('passwords.forgot.title') }}</a>
                                 </label>
                             @endif
                         </div>
                         <div class="form-control mt-6">
-                            <button class="btn btn-primary">{{ __('Login') }}</button>
+                            <button class="btn btn-primary">{{ __('auth.login.title') }}</button>
                         </div>
                     </form>
                 </div>
             </div>
         </div>
     </div>
-</x-guest-layout>
+</x-app-layout>

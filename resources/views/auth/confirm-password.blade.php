@@ -1,4 +1,4 @@
-<x-guest-layout>
+<x-app-layout>
     <x-auth-card>
         <x-slot name="logo">
             <a href="/">
@@ -7,7 +7,7 @@
         </x-slot>
 
         <div class="mb-4 text-sm text-gray-600">
-            {{ __('This is a secure area of the application. Please confirm your password before continuing.') }}
+            {{ __('passwords.area') }}
         </div>
 
         <!-- Validation Errors -->
@@ -33,4 +33,4 @@
             </div>
         </form>
     </x-auth-card>
-</x-guest-layout>
+</x-app-layout>

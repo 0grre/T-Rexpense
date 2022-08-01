@@ -21,6 +21,7 @@
     },
     "dependencies": {
         "chart.js": "^3.8.0",
-        "daisyui": "^2.19.0"
+        "daisyui": "^2.19.0",
+        "tarteaucitronjs": "^1.9.7"
     }
 }

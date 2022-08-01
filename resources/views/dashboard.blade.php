@@ -26,14 +26,6 @@
             </div>
             @enderror
         </div>
-        <div class="hidden fixed top-0 right-0 px-6 py-4 sm:block">
-            @auth
-                <form method="POST" action="{{ route('logout') }}">
-                    @csrf
-                    <button class="link link-primary mx-2">Logout</button>
-                </form>
-            @endif
-        </div>
             <div class="container grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 justify-center py-24 px-8 mx-auto">
 
                 <div class="grid grid-cols-1 gap-4 place-content-stretch ml-auto mr-0 min-w-full">
