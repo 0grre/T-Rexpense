@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="{{ str_replace('_', '-', app()->getLocale()) }}" data-theme="black">
+<html id="test" lang="{{ str_replace('_', '-', app()->getLocale()) }}" data-theme="corporate">
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -19,9 +19,8 @@
     <!-- Scripts -->
     <script src="{{ asset('js/app.js') }}" defer></script>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-    <script
-        src="https://tarteaucitron.io/load.js?domain=t-rexpense.xyz&uuid=50af414d8dc8237d1bd9760cc838fe9d6f095630"></script>
-    @include('components.tarteaucitron')
+    <script src="https://tarteaucitron.io/load.js?domain=t-rexpense.xyz&uuid=50af414d8dc8237d1bd9760cc838fe9d6f095630"></script>
+{{--    @include('components.tarteaucitron')--}}
 </head>
 <body>
 <main class="flex flex-col justify-between h-full min-h-screen @if(Request::path() != 'dashboard') bg-base-200 @endif">
@@ -98,6 +97,7 @@
                 </div>
             </div>
             <!-- Page Content -->
+            <button onclick="truc()">salut</button>
             @yield('content')
             @include('layouts.footer')
         </div>
@@ -140,4 +140,11 @@
     </div>
 </main>
 </body>
+    <script type="text/javascript">
+        let mod = document.getElementById('test')
+        const truc = () => {
+            mod.dataset.theme === 'corporate' ? mod.setAttribute("data-theme", "dark") : mod.setAttribute("data-theme", "corporate");
+            console.log(mod.dataset.theme)
+        };
+    </script>
 </html>
