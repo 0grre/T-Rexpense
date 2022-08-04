@@ -3139,6 +3139,9 @@ body[dir="rtl"] .checkbox:checked,
 .ml-0 {
   margin-left: 0px;
 }
+.mt-1 {
+  margin-top: 0.25rem;
+}
 .flex {
   display: flex;
 }

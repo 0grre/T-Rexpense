@@ -20,7 +20,6 @@
     <script src="{{ asset('js/app.js') }}" defer></script>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <script src="https://tarteaucitron.io/load.js?domain=t-rexpense.xyz&uuid=50af414d8dc8237d1bd9760cc838fe9d6f095630"></script>
-{{--    @include('components.tarteaucitron')--}}
 </head>
 <body>
 <main class="@if(Request::path() != 'dashboard') bg-base-200 @endif">
