@@ -2,15 +2,10 @@
 
 use App\Http\Controllers\BudgetController;
 use App\Http\Controllers\CategoryController;
+use App\Http\Controllers\Controller;
 use App\Http\Controllers\LanguageController;
 use App\Http\Controllers\RecurrentController;
 use App\Http\Controllers\TransactionController;
-use App\Http\Resources\TransactionResource;
-use App\Models\Budget;
-use App\Models\Category;
-use App\Models\Recurrent;
-use App\Models\Transaction;
-use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
@@ -21,21 +16,15 @@ Route::get('/privacy', function () {
     return view('privacy');
 });
 
-//Route::get('lang/{lang}', ['as' => 'lang.switch', 'uses' => 'App\Http\Controllers\LanguageController@switchLang']);
+Route::get('/terms', function () {
+    return view('terms');
+});
+
 Route::get('lang/{lang}', [LanguageController::class, 'switchLang'])->name('lang.switch');
+Route::get('theme/{theme}', [Controller::class, 'switchTheme'])->name('theme.switch');
 
 Route::middleware(['auth'])->group(function () {
-    Route::get('/dashboard', function () {
-        return view('dashboard', [
-            'categories' => Category::where('user_id', Auth::user()->getAuthIdentifier())->orderBy('name')->get(),
-            'transactions' => TransactionResource::collection(Transaction::where('user_id', Auth::user()->getAuthIdentifier())->get()),
-            'recurrents' => TransactionResource::collection(Recurrent::where('user_id', Auth::user()->getAuthIdentifier())->get()),
-            'budgets' => TransactionResource::collection((new App\Http\Controllers\BudgetController)->get_actual_amount()),
-            'totals' => TransactionController::getTotalMonthlyAmounts(),
-            'chart_data' => json_encode([0, 10, 5, 2, 20, 30, 45])
-        ]);
-    })->name('dashboard');
-
+    Route::get('/dashboard', [Controller::class, 'index'])->name('dashboard');
 
     Route::post('/categories', [CategoryController::class, 'store'])->name('categories.store');
     Route::put('/categories/{id}', [CategoryController::class, 'update'])->name('categories.update');

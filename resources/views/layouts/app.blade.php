@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html id="test" lang="{{ str_replace('_', '-', app()->getLocale()) }}" data-theme="corporate">
+<html id="html" lang="{{ str_replace('_', '-', app()->getLocale()) }}" data-theme="{{Session::get('theme')}}">
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -23,12 +23,12 @@
 {{--    @include('components.tarteaucitron')--}}
 </head>
 <body>
-<main class="flex flex-col justify-between h-full min-h-screen @if(Request::path() != 'dashboard') bg-base-200 @endif">
+<main class="@if(Request::path() != 'dashboard') bg-base-200 @endif">
     <div class="drawer drawer-end">
         <input id="my-drawer-3" type="checkbox" class="drawer-toggle"/>
         <div class="drawer-content flex flex-col">
-            <!-- Navbar -->
-            <div class="w-full navbar">
+            <!-- Desktop Navbar -->
+            <div class="w-full navbar absolute">
                 <div class="flex-none lg:hidden">
                     <label for="my-drawer-3" class="btn btn-square btn-ghost">
                         <span class="material-symbols-outlined">
@@ -36,115 +36,35 @@
                         </span>
                     </label>
                 </div>
-                <div class="flex-1">
-                    {{-- dark/light mode --}}
-                    <a href="" class="mx-2 mt-0.5">
-                        <span class="material-symbols-outlined">
-                            dark_mode
-                        </span>
-                    </a>
-                </div>
+                <!-- dark/light mod -->
+                @include('components.theme')
+                <!-- Navbar -->
                 <div class="flex-none hidden lg:block">
                     <ul class="menu menu-horizontal">
-                        @auth
-                            @if(Request::path() != 'dashboard')
-                                <li class="text-secondary hover:text-white">
-                                    <a href="{{ url('/dashboard') }}">dashboard</a>
-                                </li>
-                            @endif
-                            <li class="text-secondary hover:text-white">
-                                <form method="POST" action="{{ route('logout') }}">
-                                    @csrf
-                                    <button>{{ __('auth.logout') }}</button>
-                                </form>
-                            </li>
-                        @else
-                            @if(Request::path() != '/')
-                                <li class="text-secondary hover:text-white">
-                                    <a href="/">{{ __('auth.back') }}</a>
-                                </li>
-                            @endif
-                            @if(Request::path() != 'login')
-                                <li class="text-secondary hover:text-white">
-                                    <a href="{{ route('login') }}">{{ __('auth.login.slug') }}</a>
-                                </li>
-                            @endif
-                            @if(Request::path() != 'register')
-                                <li class="text-secondary hover:text-white">
-                                    <a href="{{ route('register') }}">{{ __('auth.register.slug') }}</a>
-                                </li>
-                            @endif
-                        @endauth
-                        @foreach (Config::get('languages') as $lang => $language)
-                            @if ($lang != App::getLocale())
-                                <li>
-                                    <a href="{{ route('lang.switch', $lang) }}" class="mt-0.5">{{ $language }}</a>
-                                </li>
-                            @endif
-                        @endforeach
+                        @include('auth.navigation')
+                        @include('components.language')
                     </ul>
                 </div>
                 <div class="flex-none lg:hidden">
                     <ul class="menu menu-horizontal">
-                        @foreach (Config::get('languages') as $lang => $language)
-                            @if ($lang != App::getLocale())
-                                <li>
-                                    <a href="{{ route('lang.switch', $lang) }}" class="mx-2 mt-0.5">{{ $language }}</a>
-                                </li>
-                            @endif
-                        @endforeach
+                        @include('components.language')
                     </ul>
                 </div>
             </div>
             <!-- Page Content -->
-            <button onclick="truc()">salut</button>
+            <div class="flex flex-col justify-between h-full min-h-screen pt-12">
             @yield('content')
             @include('layouts.footer')
+            </div>
         </div>
+        <!-- Mobile Navbar -->
         <div class="drawer-side">
             <label for="my-drawer-3" class="drawer-overlay"></label>
             <ul class="menu p-4 overflow-y-auto w-80 bg-base-100">
-                @auth
-                    @if(Request::path() != 'dashboard')
-                        <li class="text-secondary hover:text-white">
-                            <a href="{{ url('/dashboard') }}" class="link link-primary mx-2">dashboard</a>
-                        </li>
-                    @endif
-                    <li class="text-secondary hover:text-white">
-                        <form method="POST" action="{{ route('logout') }}">
-                            @csrf
-                            <button class="link link-primary mx-2">{{ __('auth.logout') }}</button>
-                        </form>
-                    </li>
-                @else
-                    @if(Request::path() != '/')
-                        <li class="text-secondary hover:text-white">
-                            <a href="/" class="link link-primary mx-2">{{ __('auth.back') }}</a>
-                        </li>
-                    @endif
-                    @if(Request::path() != 'login')
-                        <li>
-                            <a href="{{ route('login') }}"
-                               class="link link-primary mx-2">{{ __('auth.login.slug') }}</a>
-                        </li>
-                    @endif
-                    @if(Request::path() != 'register')
-                        <li class="text-secondary hover:text-white">
-                            <a href="{{ route('register') }}"
-                               class="link link-primary mx-2">{{ __('auth.register.slug') }}</a>
-                        </li>
-                    @endif
-                @endauth
+                @include('auth.navigation')
             </ul>
         </div>
     </div>
 </main>
 </body>
-    <script type="text/javascript">
-        let mod = document.getElementById('test')
-        const truc = () => {
-            mod.dataset.theme === 'corporate' ? mod.setAttribute("data-theme", "dark") : mod.setAttribute("data-theme", "corporate");
-            console.log(mod.dataset.theme)
-        };
-    </script>
 </html>
