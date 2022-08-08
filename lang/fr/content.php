@@ -30,5 +30,11 @@ return [
     'balance' => [
         'current' => 'Montant actuel',
         'account' => 'Montant final',
+    ],
+    'transaction' => [
+        'title' => 'Nouvelle transaction',
+        'create' => 'Créer une transaction',
+        'update' => 'Modifier une transaction',
+        'delete' => 'Supprimer la transaction ?',
     ]
 ];

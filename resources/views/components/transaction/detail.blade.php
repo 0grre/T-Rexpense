@@ -13,7 +13,7 @@
         <input type="checkbox" id="update-transaction-modal-{{$transaction->id}}" class="modal-toggle"/>
         <div class="modal modal-bottom sm:modal-middle">
             <div class="modal-box">
-                <h3 class="font-bold text-lg mb-8">Update transaction</h3>
+                <h3 class="font-bold text-lg mb-8">{{ __('content.transaction.update') }}</h3>
                 <label for="update-transaction-modal-{{$transaction->id}}"
                        class="btn btn-sm btn-circle absolute right-2 top-2">✕</label>
                 <form method="POST" action="{{ 'transactions/'. $transaction->id }}">
@@ -23,7 +23,7 @@
                         <!-- Name -->
                         <div class="form-control w-full max-w-xs">
                             <label class="label">
-                                <span class="label-text">Enter name</span>
+                                <span class="label-text">{{ __('form.field.name') }}</span>
                             </label>
                             <label class="input-group">
                                 <input name="name" type="text" placeholder="{{ $transaction->name }}"
@@ -34,7 +34,7 @@
                         <!-- Amount -->
                         <div class="form-control w-full max-w-xs">
                             <label class="label">
-                                <span class="label-text">Enter amount</span>
+                                <span class="label-text">{{ __('form.field.amount') }}</span>
                             </label>
                             <label class="input-group">
                                 <input name="amount" type="number" step='0.01'
@@ -49,7 +49,7 @@
                         <!-- Paid Date -->
                         <div class="form-control w-full max-w-xs">
                             <label class="label">
-                                <span class="label-text">Enter paid date</span>
+                                <span class="label-text">{{ __('form.field.paid-date') }}</span>
                             </label>
                             <label class="input-group">
                                 <input name="paid_at" type="date" value="{{ $transaction->paid_at }}"
@@ -59,7 +59,7 @@
                         <!-- Category -->
                         <div class="form-control w-full max-w-xs">
                             <label class="label">
-                                <span class="label-text">Select transaction category</span>
+                                <span class="label-text">{{ __('form.field.category') }}</span>
                             </label>
                             <select name="category_id" class="select select-bordered select-primary w-full max-w-xs"
                                     required>
@@ -73,8 +73,8 @@
                     <div class="modal-action">
                         <!-- Open delete modal -->
                         <label for="delete-transaction-modal-{{$transaction->id}}"
-                               class="btn btn-outline btn-error btn-sm">Delete</label>
-                        <button class="btn btn-outline btn-success btn-sm">Update</button>
+                               class="btn btn-outline btn-error btn-sm">{{ __('form.delete') }}</label>
+                        <button class="btn btn-outline btn-success btn-sm">{{ __('form.update') }}</button>
                     </div>
                 </form>
                 <!-- Delete modal -->
@@ -84,13 +84,12 @@
                         <form method="POST" action="{{ 'transactions/'. $transaction->id }}">
                             @method('delete')
                             @csrf
-                            <h3 class="font-bold text-lg">Delete transaction?</h3>
-                            <p class="py-4">Are you sure you want to remove the transaction? It will be deleted
-                                permanently!</p>
+                            <h3 class="font-bold text-lg">{{ __('content.transaction.delete') }}</h3>
+                            <p class="py-4">{{ __('form.delete-text') }}</p>
                             <div class="modal-action">
                                 <label for="delete-transaction-modal-{{$transaction->id}}"
-                                       class="btn btn-outline btn-error btn-sm">Cancel</label>
-                                <button class="btn btn-error btn-sm">Delete</button>
+                                       class="btn btn-outline btn-error btn-sm">{{ __('form.cancel') }}</label>
+                                <button class="btn btn-error btn-sm">{{ __('form.delete') }}</button>
                             </div>
                         </form>
                     </div>

@@ -17,5 +17,15 @@ return [
     'email' => 'email',
     'password' => 'password',
     'confirm-password' => 'confirm password',
-
+    'field' => [
+        'name' => 'Enter name',
+        'amount' => 'Enter amount',
+        'paid-date' => 'Enter paid date',
+        'category' => 'Select transaction category',
+        'pick-category' => 'Pick transaction category'
+    ],
+    'update' => 'Update',
+    'delete' => 'Delete',
+    'delete-text' => 'Are you sure you want to remove the transaction? It will be deleted permanently!',
+    'cancel' => 'Cancel'
 ];
