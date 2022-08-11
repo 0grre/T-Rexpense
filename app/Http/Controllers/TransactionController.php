@@ -55,12 +55,12 @@ class TransactionController extends Controller
     ])]
     public static function getTotalMonthlyAmounts(): array
     {
-        $incomes = Transaction::where('user_id', Auth::user()->getAuthIdentifier())->get()->reject(function ($expense) {
+        $incomes = Transaction::where('user_id', Auth::user()->getAuthIdentifier())->where('paid_at', '')->get()->reject(function ($expense) {
             return $expense->is_expense();
         })->sum('amount');
 
-        $expenses = Transaction::where('user_id', Auth::user()->getAuthIdentifier())->get()->filter(function ($expense) {
-            return $expense->is_expense();
+        $expenses = Transaction::where('user_id', Auth::user()->getAuthIdentifier())->where('paid_at', '')->get()->filter(function ($expense) {
+            return $expense->is_expense() && $expense->is_paid();
         })->sum('amount');
 
         $actual_total = $incomes - $expenses;
