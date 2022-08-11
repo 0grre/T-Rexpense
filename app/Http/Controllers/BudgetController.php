@@ -54,7 +54,7 @@ class BudgetController extends Controller
 
         foreach ($budgets as $budget){
             $expenses = Transaction::where('user_id', Auth::user()->getAuthIdentifier())->where('category_id', $budget->category_id)->get()->filter(function ($expense) {
-                return $expense->is_expense();
+                return $expense->is_expense() && $expense->is_monthly();
             })->sum('amount');
 
             $budget->actual_amount = $budget->amount - $expenses;

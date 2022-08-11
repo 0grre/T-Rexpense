@@ -31,7 +31,7 @@ class Recurrent extends Transaction
     /**
      * @return bool
      */
-    public function is_paid(): bool
+    public function recurrent_is_paid(): bool
     {
         return $this->transactions()
             ->whereBetween('paid_at', [

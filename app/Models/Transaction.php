@@ -58,11 +58,11 @@ class Transaction extends Model
         ])->validate();
 
 
-        if($request->paid_at){
+        if ($request->paid_at) {
             $this->paid_at = $request->paid_at;
         }
 
-        if($request->recurrent_id){
+        if ($request->recurrent_id) {
             $this->recurrent_id = $request->recurrent_id;
         }
 
@@ -88,5 +88,13 @@ class Transaction extends Model
     public function is_paid(): bool
     {
         return $this->paid_at <= Carbon::now()->format('Y-m-d');
+    }
+
+    /**
+     * @return bool
+     */
+    public function is_monthly(): bool
+    {
+        return $this->paid_at >= Carbon::now()->firstOfMonth()->format('Y-m-d') && $this->paid_at <= Carbon::now()->lastOfMonth()->format('Y-m-d');
     }
 }

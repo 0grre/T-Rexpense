@@ -55,23 +55,29 @@ class TransactionController extends Controller
     ])]
     public static function getTotalMonthlyAmounts(): array
     {
-        $incomes = Transaction::where('user_id', Auth::user()->getAuthIdentifier())->where('paid_at', '')->get()->reject(function ($expense) {
+        $incomes = Transaction::where('user_id', Auth::user()->getAuthIdentifier())->get()->reject(function ($expense) {
             return $expense->is_expense();
         })->sum('amount');
 
-        $expenses = Transaction::where('user_id', Auth::user()->getAuthIdentifier())->where('paid_at', '')->get()->filter(function ($expense) {
-            return $expense->is_expense() && $expense->is_paid();
+        $expenses_is_paid = Transaction::where('user_id', Auth::user()->getAuthIdentifier())->get()->filter(function ($expense) {
+            return $expense->is_expense() && $expense->is_paid() && $expense->is_monthly();
         })->sum('amount');
 
-        $actual_total = $incomes - $expenses;
+        $expenses_not_paid = Transaction::where('user_id', Auth::user()->getAuthIdentifier())->get()->filter(function ($expense) {
+            return $expense->is_expense() && $expense->is_monthly();
+        })->sum('amount');
+
+        $actual_total = $incomes - $expenses_is_paid;
 
         $recurrent_expenses_not_paid = Recurrent::where('user_id', Auth::user()->getAuthIdentifier())->get()->filter(function ($recurrent) {
-            return $recurrent->is_expense() && !$recurrent->is_paid();
+            return $recurrent->is_expense() && !$recurrent->recurrent_is_paid();
         })->sum('amount');
+
+        $final_total = $actual_total - $recurrent_expenses_not_paid - $expenses_not_paid;
 
         return [
             'actual' => $actual_total,
-            'final' => $actual_total - $recurrent_expenses_not_paid
+            'final' => $final_total
         ];
     }
 }

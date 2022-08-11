@@ -37,7 +37,7 @@
             <!-- Desktop Navbar -->
             <div class="w-full navbar absolute">
                 <div class="flex-none lg:hidden">
-                    <label for="my-drawer-3" class="btn btn-square btn-ghost">
+                    <label for="my-drawer-3" class="btn btn-square btn-ghost lg:hidden">
                         <span class="material-symbols-outlined">
                             menu
                         </span>
