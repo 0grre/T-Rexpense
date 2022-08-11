@@ -17,7 +17,7 @@ return [
     ],
     'footer' => [
         'about' => 'à propos',
-        'terms' => "Conditions générales d'utilisation",
+        'terms' => "Mentions légales",
         'privacy policy' => 'Politique de confidentialité',
         'cookies' => 'cookies',
     ],
