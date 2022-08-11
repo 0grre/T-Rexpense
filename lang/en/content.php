@@ -36,5 +36,23 @@ return [
         'create' => 'Create transaction',
         'update' => 'Update transaction',
         'delete' => 'Delete transaction?',
+    ],
+    'recurrent-transaction' => [
+        'title' => 'New recurrent transaction',
+        'create' => 'Create recurrent transaction',
+        'update' => 'Update recurrent transaction',
+        'delete' => 'Delete recurrent transaction?',
+    ],
+    'budget' => [
+        'title' => 'New budget',
+        'create' => 'Create budget',
+        'update' => 'Update budget',
+        'delete' => 'Delete budget?',
+    ],
+    'category' => [
+        'title' => 'New category',
+        'create' => 'Create category',
+        'update' => 'Update category',
+        'delete' => 'Delete category?',
     ]
 ];

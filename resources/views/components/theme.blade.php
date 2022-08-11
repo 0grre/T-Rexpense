@@ -18,4 +18,11 @@
             </a>
         @endif
     </label>
+        <label for="my-drawer-3" class="btn btn-square btn-ghost">
+            <a href="/" class="mx-2 mt-0.5">
+                <span class="material-symbols-outlined">
+                    home
+                </span>
+            </a>
+        </label>
 </div>

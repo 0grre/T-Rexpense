@@ -8,7 +8,7 @@
         <input type="checkbox" id="update-budget-modal-{{$budget->id}}" class="modal-toggle"/>
         <div class="modal modal-bottom sm:modal-middle">
             <div class="modal-box">
-                <h3 class="font-bold text-lg mb-8">Update budget</h3>
+                <h3 class="font-bold text-lg mb-8">{{ __('content.budget.update') }}</h3>
                 <label for="update-budget-modal-{{$budget->id}}"
                        class="btn btn-sm btn-circle absolute right-2 top-2">✕</label>
                 <form method="POST" action="{{ 'budgets/'. $budget->id }}">
@@ -18,7 +18,7 @@
                         <!-- Name -->
                         <div class="form-control w-full max-w-xs">
                             <label class="label">
-                                <span class="label-text">Enter name</span>
+                                <span class="label-text">{{ __('form.field.name') }}</span>
                             </label>
                             <label class="input-group">
                                 <input name="name" type="text" placeholder="{{ $budget->name }}"
@@ -29,7 +29,7 @@
                         <!-- Amount -->
                         <div class="form-control w-full max-w-xs">
                             <label class="label">
-                                <span class="label-text">Enter amount</span>
+                                <span class="label-text">{{ __('form.field.amount') }}</span>
                             </label>
                             <label class="input-group">
                                 <input name="amount" type="number" step='0.01'
@@ -44,7 +44,7 @@
                         <!-- Category -->
                         <div class="form-control w-full max-w-xs">
                             <label class="label">
-                                <span class="label-text">Select budget category</span>
+                                <span class="label-text">{{ __('form.field.category') }}</span>
                             </label>
                             <select name="category_id" class="select select-bordered select-primary w-full max-w-xs"
                                     required>
@@ -58,8 +58,8 @@
                     <div class="modal-action">
                         <!-- Open delete modal -->
                         <label for="delete-budget-modal-{{$budget->id}}"
-                               class="btn btn-outline btn-error btn-sm">Delete</label>
-                        <button class="btn btn-outline btn-success btn-sm">Update</button>
+                               class="btn btn-outline btn-error btn-sm">{{ __('form.delete') }}</label>
+                        <button class="btn btn-outline btn-success btn-sm">{{ __('form.update') }}</button>
                     </div>
                 </form>
                 <!-- Delete modal -->
@@ -69,13 +69,12 @@
                         <form method="POST" action="{{ 'budgets/'. $budget->id }}">
                             @method('delete')
                             @csrf
-                            <h3 class="font-bold text-lg">Delete budget?</h3>
-                            <p class="py-4">Are you sure you want to remove the budget? It will be deleted
-                                permanently!</p>
+                            <h3 class="font-bold text-lg">{{ __('content.budget.delete') }}</h3>
+                            <p class="py-4">{{ __('form.delete-text') }}</p>
                             <div class="modal-action">
                                 <label for="delete-budget-modal-{{$budget->id}}"
-                                       class="btn btn-outline btn-error btn-sm">Cancel</label>
-                                <button class="btn btn-error btn-sm">Delete</button>
+                                       class="btn btn-outline btn-error btn-sm">{{ __('form.cancel') }}</label>
+                                <button class="btn btn-error btn-sm">{{ __('form.delete') }}</button>
                             </div>
                         </form>
                     </div>

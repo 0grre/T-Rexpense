@@ -4,8 +4,8 @@
 
         <div class="grid grid-cols-1 gap-4 place-content-stretch ml-auto mr-0 min-w-full">
             <div class="card flex flex-col justify-between p-4 outline outline-primary rounded-lg">
-                <div class="collapse">
-                    <input type="checkbox"/>
+                <div class="collapse collapse-plus">
+                    <input type="checkbox" checked/>
                     <h3 class="collapse-title card-title">{{ __('content.dashboard.transactions') }}</h3>
                     <div class="collapse-content">
                         <x-transaction.detail :transactions="$transactions" :categories="$categories"/>
@@ -15,8 +15,8 @@
             </div>
 
             <div class="card flex flex-col justify-between p-4 outline outline-primary rounded-lg">
-                <div class="collapse">
-                    <input type="checkbox"/>
+                <div class="collapse collapse-plus">
+                    <input type="checkbox" checked/>
                     <h3 class="collapse-title card-title">{{ __('content.dashboard.recurrent-transactions') }}</h3>
                     <div class="collapse-content">
                         <x-recurrent.detail :recurrents="$recurrents" :categories="$categories"/>
@@ -32,8 +32,8 @@
 
         <div class="grid grid-cols-1 gap-4 place-content-stretch mx-auto ml-0 min-w-full">
             <div class="card flex flex-col justify-between p-4 outline outline-primary rounded-lg">
-                <div class="collapse">
-                    <input type="checkbox"/>
+                <div class="collapse collapse-plus">
+                    <input type="checkbox" checked/>
                     <h3 class="collapse-title card-title">{{ __('content.dashboard.budgets') }}</h3>
                     <div class="collapse-content">
                         <x-budget.detail :budgets="$budgets" :categories="$categories"/>
@@ -43,8 +43,8 @@
             </div>
 
             <div class="card flex flex-col justify-between p-4 outline outline-primary rounded-lg">
-                <div class="collapse">
-                    <input type="checkbox"/>
+                <div class="collapse collapse-plus">
+                    <input type="checkbox" checked/>
                     <h3 class="collapse-title card-title">{{ __('content.dashboard.categories') }}</h3>
                     <div class="collapse-content">
                         <x-category.detail :categories="$categories"/>

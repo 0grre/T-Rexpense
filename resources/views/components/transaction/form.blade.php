@@ -16,7 +16,7 @@
                         <span class="label-text">{{ __('form.field.name') }}</span>
                     </label>
                     <label class="input-group">
-                        <input name="name" type="text" placeholder="transaction name here"
+                        <input name="name" type="text" placeholder="{{ __('form.placeholder.name') }}"
                                class="input input-bordered input-primary w-full max-w-xs" required/>
                     </label>
                 </div>
@@ -56,7 +56,7 @@
             </div>
 
             <div class="modal-action">
-                <button class="btn btn-outline btn-success">{{ __('form.transaction.create') }}</button>
+                <button class="btn btn-outline btn-success">{{ __('content.transaction.create') }}</button>
             </div>
         </form>
     </div>

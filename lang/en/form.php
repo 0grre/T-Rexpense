@@ -24,8 +24,14 @@ return [
         'category' => 'Select transaction category',
         'pick-category' => 'Pick transaction category'
     ],
+    'placeholder' => [
+        'name' => 'name here',
+        'amount' => 'amount here',
+        'paid-date' => 'paid date here',
+    ],
     'update' => 'Update',
     'delete' => 'Delete',
     'delete-text' => 'Are you sure you want to remove the transaction? It will be deleted permanently!',
-    'cancel' => 'Cancel'
+    'cancel' => 'Cancel',
+    'is-expense' => 'Is expense?'
 ];

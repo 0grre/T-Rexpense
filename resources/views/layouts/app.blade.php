@@ -17,10 +17,17 @@
     <link rel="stylesheet" href="{{ asset('css/app.css') }}">
 
     <!-- Scripts -->
+{{--    <script src="https://tarteaucitron.io/load.js?domain=t-rexpense.xyz&uuid=50af414d8dc8237d1bd9760cc838fe9d6f095630">--}}
+{{--    </script>--}}
+{{--    <script src="https://cookiehub.net/c2/c6bd5d6a.js"></script>--}}
+{{--    <script type="text/javascript">--}}
+{{--        document.addEventListener("DOMContentLoaded", function(event) {--}}
+{{--            var cpm = {};--}}
+{{--            window.cookiehub.load(cpm);--}}
+{{--        });--}}
+{{--    </script>--}}
     <script src="{{ asset('js/app.js') }}" defer></script>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-    <script
-        src="https://tarteaucitron.io/load.js?domain=t-rexpense.xyz&uuid=50af414d8dc8237d1bd9760cc838fe9d6f095630"></script>
 </head>
 <body>
 <main class="@if(Request::path() != 'dashboard') bg-base-200 @endif">

@@ -1,11 +1,11 @@
 <!-- The button to open modal -->
-<label for="new-recurrent-modal" class="btn btn-outline btn-primary btn-xs">New recurrent transaction</label>
+<label for="new-recurrent-modal" class="btn btn-outline btn-primary btn-xs">{{ __('content.recurrent-transaction.title') }}</label>
 
 <!-- Put this part before </body> tag -->
 <input type="checkbox" id="new-recurrent-modal" class="modal-toggle"/>
 <div class="modal modal-bottom sm:modal-middle">
     <div class="modal-box">
-        <h3 class="font-bold text-lg mb-8">New recurrent transaction</h3>
+        <h3 class="font-bold text-lg mb-8">{{ __('content.recurrent-transaction.title') }}</h3>
         <label for="new-recurrent-modal" class="btn btn-sm btn-circle absolute right-2 top-2">✕</label>
         <form method="POST" action="{{ route('recurrents.store') }}">
             @csrf
@@ -13,17 +13,17 @@
                 <!-- Name -->
                 <div class="form-control w-full max-w-xs">
                     <label class="label">
-                        <span class="label-text">Enter name</span>
+                        <span class="label-text">{{ __('form.field.name') }}</span>
                     </label>
                     <label class="input-group">
-                        <input name="name" type="text" placeholder="Recurrent transaction name here"
+                        <input name="name" type="text" placeholder="{{ __('form.placeholder.name') }}"
                                class="input input-bordered input-primary w-full max-w-xs" required/>
                     </label>
                 </div>
                 <!-- Amount -->
                 <div class="form-control w-full max-w-xs">
                     <label class="label">
-                        <span class="label-text">Enter amount</span>
+                        <span class="label-text">{{ __('form.field.amount') }}</span>
                     </label>
                     <label class="input-group">
                         <input name="amount" type="number" step='0.01' placeholder="0.00" class="input input-bordered" required/>
@@ -35,10 +35,10 @@
                 <!-- Category -->
                 <div class="form-control w-full max-w-xs">
                     <label class="label">
-                        <span class="label-text">Select recurrent transaction category</span>
+                        <span class="label-text">{{ __('form.field.category') }}</span>
                     </label>
                     <select name="category_id" class="select select-bordered select-primary w-full max-w-xs" required>
-                        <option disabled selected>Pick recurrent transaction category</option>
+                        <option disabled selected>{{ __('form.field.pick-category') }}</option>
                         @foreach($categories as $category)
                             <option value="{{$category->id}}">{{ $category->name }}</option>
                         @endforeach
@@ -47,7 +47,7 @@
             </div>
 
             <div class="modal-action">
-                <button class="btn btn-outline btn-success">Create recurrent transaction</button>
+                <button class="btn btn-outline btn-success">{{ __('content.recurrent-transaction.create') }}</button>
             </div>
         </form>
     </div>

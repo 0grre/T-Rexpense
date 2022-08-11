@@ -11,11 +11,6 @@
         </form>
     </li>
 @else
-    @if(Request::path() != '/')
-        <li class="text-secondary hover:text-white">
-            <a href="/" class="mx-2">{{ __('auth.back') }}</a>
-        </li>
-    @endif
     @if(Request::path() != 'login')
         <li class="text-secondary hover:text-white">
             <a href="{{ route('login') }}"

@@ -34,7 +34,25 @@ return [
     'transaction' => [
         'title' => 'Nouvelle transaction',
         'create' => 'Créer une transaction',
-        'update' => 'Modifier une transaction',
+        'update' => 'Modifier la transaction',
         'delete' => 'Supprimer la transaction ?',
+    ],
+    'recurrent-transaction' => [
+        'title' => 'Nouvelle transaction récurrente',
+        'create' => 'Créer une transaction récurrente',
+        'update' => 'Modifier la transaction récurrente',
+        'delete' => 'Supprimer la transaction récurrente ?',
+    ],
+    'budget' => [
+        'title' => 'Nouveau budget',
+        'create' => 'Créer un budget',
+        'update' => 'Modifier le budget',
+        'delete' => 'Supprimer le budget ?',
+    ],
+    'category' => [
+        'title' => 'Nouvelle catégorie',
+        'create' => 'Créer une catégorie',
+        'update' => 'Modifier la catégorie',
+        'delete' => 'Supprimer la catégorie ?',
     ]
 ];

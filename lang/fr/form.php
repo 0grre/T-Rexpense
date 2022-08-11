@@ -18,14 +18,20 @@ return [
     'password' => 'mot de passe',
     'confirm-password' => 'confirmer le mot de passe',
     'field' => [
-        'name' => 'Entrez name',
-        'amount' => 'Entrez amount',
-        'paid-date' => 'Entrez paid date',
+        'name' => 'Entrez un nom',
+        'amount' => 'Entrez un montant',
+        'paid-date' => 'Entrez une date de paiement',
         'category' => 'Sélectionnez une catégorie',
         'pick-category' => 'Sélectionnez une catégorie'
+    ],
+    'placeholder' => [
+        'name' => 'nom ici',
+        'amount' => 'montant ici',
+        'paid-date' => 'date de paiement ici',
     ],
     'update' => 'Modifier',
     'delete' => 'Supprimer',
     'delete-text' => 'Voulez-vous vraiment supprimer la transaction? Il sera supprimé définitivement !',
-    'cancel' => 'Annuler'
+    'cancel' => 'Annuler',
+    'is-expense' => "C'est une dépense ?"
 ];

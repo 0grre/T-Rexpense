@@ -9,7 +9,7 @@
         <input type="checkbox" id="update-category-modal-{{$category->id}}" class="modal-toggle"/>
         <div class="modal modal-bottom sm:modal-middle">
             <div class="modal-box">
-                <h3 class="font-bold text-lg mb-8">Update category</h3>
+                <h3 class="font-bold text-lg mb-8">{{ __('content.category.update') }}</h3>
                 <label for="update-category-modal-{{$category->id}}"
                        class="btn btn-sm btn-circle absolute right-2 top-2">✕</label>
                 <form method="POST" action="{{ 'categories/'. $category->id }}">
@@ -19,7 +19,7 @@
                         <!-- Name -->
                         <div class="form-control w-full max-w-xs">
                             <label class="label">
-                                <span class="label-text">Enter name</span>
+                                <span class="label-text">{{ __('form.field.name') }}</span>
                             </label>
                             <input name="name" type="text" placeholder="{{ $category->name }}"
                                    value="{{ $category->name }}"
@@ -28,7 +28,7 @@
                         <!-- Is Expense -->
                         <div class="form-control w-full max-w-xs">
                             <label class="label cursor-pointer">
-                                <span class="label-text">Is expense?</span>
+                                <span class="label-text">{{ __('form.is-expense') }}</span>
                                 <input type="checkbox" name="is_expense"
                                        @checked(old(1, $category->is_expense))  class="checkbox checkbox-primary checkbox-sm"/>
                             </label>
@@ -37,8 +37,8 @@
                     <div class="modal-action">
                         <!-- Open delete modal -->
                         <label for="delete-category-modal-{{$category->id}}"
-                               class="btn btn-outline btn-error btn-sm">Delete</label>
-                        <button class="btn btn-outline btn-success btn-sm">Update</button>
+                               class="btn btn-outline btn-error btn-sm">{{ __('form.delete') }}</label>
+                        <button class="btn btn-outline btn-success btn-sm">{{ __('form.update') }}</button>
                     </div>
                 </form>
                 <!-- Delete modal -->
@@ -48,14 +48,12 @@
                         <form method="POST" action="{{ 'categories/'. $category->id }}">
                             @method('delete')
                             @csrf
-                            <h3 class="font-bold text-lg">Delete category?</h3>
-                            <p class="py-4">Are you sure you want to delete the category? Any expenses or income related
-                                to
-                                this category will also be permanently removed!</p>
+                            <h3 class="font-bold text-lg">{{ __('content.category.delete') }}</h3>
+                            <p class="py-4">{{ __('form.delete-text') }}</p>
                             <div class="modal-action">
                                 <label for="delete-category-modal-{{$category->id}}"
-                                       class="btn btn-outline btn-error btn-sm">Cancel</label>
-                                <button class="btn btn-error btn-sm">Delete</button>
+                                       class="btn btn-outline btn-error btn-sm">{{ __('form.cancel') }}</label>
+                                <button class="btn btn-error btn-sm">{{ __('form.delete') }}</button>
                             </div>
                         </form>
                     </div>
