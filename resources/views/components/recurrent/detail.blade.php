@@ -10,7 +10,7 @@
             €
         </label>
         <!-- Open new recurrent transaction modal -->
-        @if( !$recurrent->is_paid() )
+        @if( !$recurrent->recurrent_is_paid() )
             <div class="tooltip hover:tooltip-open tooltip-left" data-tip="Store this transaction for this month">
                 <label for="new-recurrent-transaction-modal-{{ $recurrent->id }}">
                     <span class="cursor-pointer material-symbols-outlined">
@@ -48,11 +48,11 @@
                                 <span class="label-text">{{ __('form.field.amount') }}</span>
                             </label>
                             <label class="input-group">
-                                <input name="amount" type="number" step='0.01' placeholder="{{ number_format($recurrent->amount, 2) }}" class="input input-bordered"
-                                       value="{{ number_format($recurrent->amount, 2) }}" required/>
+                                <input name="amount" type="number" step='0.01' placeholder="{{ number_format($recurrent->amount, 2, '.', '') }}" class="input input-bordered"
+                                       value="{{ number_format($recurrent->amount, 2, '.', '') }}" required/>
                                 <span class="material-symbols-outlined">
-                            euro
-                        </span>
+                                    euro
+                                </span>
                             </label>
                         </div>
                         <!-- Paid Date -->
@@ -110,11 +110,11 @@
                     <!-- Amount -->
                     <div class="form-control w-full max-w-xs">
                         <label class="label">
-                            <span class="label-text">{{ __('form.field.paid-date') }}</span>
+                            <span class="label-text">{{ __('form.field.amount') }}</span>
                         </label>
                         <label class="input-group">
-                            <input name="amount" type="number" step='0.01' placeholder="{{ number_format($recurrent->amount, 2) }}"
-                                   value="{{ number_format($recurrent->amount, 2) }}" class="input input-bordered" required/>
+                            <input name="amount" type="number" step='0.01' placeholder="{{ number_format($recurrent->amount, 2, '.', '') }}"
+                                   value="{{ number_format($recurrent->amount, 2, '.', '') }}" class="input input-bordered" required/>
                             <span class="material-symbols-outlined">
                             euro
                         </span>

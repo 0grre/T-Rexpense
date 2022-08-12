@@ -21,9 +21,11 @@
                             <label class="label">
                                 <span class="label-text">{{ __('form.field.name') }}</span>
                             </label>
-                            <input name="name" type="text" placeholder="{{ $category->name }}"
-                                   value="{{ $category->name }}"
-                                   class="input input-ghost w-full max-w-xs" required/>
+                            <label class="input-group">
+                                <input name="name" type="text" placeholder="{{ $category->name }}"
+                                       value="{{ $category->name }}"
+                                       class="input input-bordered input-primary w-full max-w-xs" required/>
+                            </label>
                         </div>
                         <!-- Is Expense -->
                         <div class="form-control w-full max-w-xs">

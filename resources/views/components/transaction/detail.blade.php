@@ -38,8 +38,8 @@
                             </label>
                             <label class="input-group">
                                 <input name="amount" type="number" step='0.01'
-                                       placeholder="{{ number_format($transaction->amount, 2) }}"
-                                       value="{{ number_format($transaction->amount, 2) }}" class="input input-bordered"
+                                       placeholder="{{ number_format($transaction->amount, 2, '.', '') }}"
+                                       value="{{ number_format($transaction->amount, 2, '.', '') }}" class="input input-bordered"
                                        required/>
                                 <span class="material-symbols-outlined">
                             euro
@@ -52,7 +52,7 @@
                                 <span class="label-text">{{ __('form.field.paid-date') }}</span>
                             </label>
                             <label class="input-group">
-                                <input name="paid_at" type="date" value="{{ $transaction->paid_at }}"
+                                <input name="paid_at" type="date" value="{{ \Carbon\Carbon::parse($transaction->paid_at)->format('Y-m-d')}}"
                                        class="input input-bordered" required/>
                             </label>
                         </div>

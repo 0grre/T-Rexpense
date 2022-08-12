@@ -1,5 +1,6 @@
 <!-- The button to open modal -->
-<label for="new-transaction-modal" class="btn btn-outline btn-primary btn-xs">{{ __('content.transaction.title') }}</label>
+<label for="new-transaction-modal"
+       class="btn btn-outline btn-primary btn-xs">{{ __('content.transaction.title') }}</label>
 
 <!-- Put this part before </body> tag -->
 <input type="checkbox" id="new-transaction-modal" class="modal-toggle"/>
@@ -26,7 +27,8 @@
                         <span class="label-text">{{ __('form.field.amount') }}</span>
                     </label>
                     <label class="input-group">
-                        <input name="amount" type="number" step='0.01' placeholder="0.00" class="input input-bordered" required/>
+                        <input name="amount" type="number" step='0.01' placeholder="0.00" class="input input-bordered"
+                               required/>
                         <span class="material-symbols-outlined">
                             euro
                         </span>
@@ -38,7 +40,8 @@
                         <span class="label-text">{{ __('form.field.paid-date') }}</span>
                     </label>
                     <label class="input-group">
-                        <input name="paid_at" type="date" class="input input-bordered" required/>
+                        <input name="paid_at" type="date" value="{{ Carbon\Carbon::now()->format('Y-m-d') }}"
+                               class="input input-bordered" required/>
                     </label>
                 </div>
                 <!-- Category -->
