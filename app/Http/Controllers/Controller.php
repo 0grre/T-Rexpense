@@ -30,7 +30,9 @@ class Controller extends BaseController
     {
         return view('dashboard', [
             'categories' => Category::where('user_id', Auth::user()->getAuthIdentifier())->orderBy('name')->get(),
-            'transactions' => TransactionResource::collection(Transaction::where('user_id', Auth::user()->getAuthIdentifier())->get()),
+            'transactions' => TransactionResource::collection(Transaction::where('user_id', Auth::user()->getAuthIdentifier())->get()->filter(function ($transaction) {
+                return $transaction->is_monthly();
+            })),
             'recurrents' => TransactionResource::collection(Recurrent::where('user_id', Auth::user()->getAuthIdentifier())->get()),
             'budgets' => TransactionResource::collection((new BudgetController)->get_actual_amount()),
             'totals' => TransactionController::getTotalMonthlyAmounts(),
